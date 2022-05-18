@@ -87,7 +87,15 @@ func Login(c *gin.Context) {
 		return
 	}
 	//发放token
-	token := "11"
+	token, err := common.ReleaseToken(user)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"code": 500,
+			"msg":  "系统异常",
+		})
+		log.Panicf("token generate error : %v", err)
+		return
+	}
 	//返回结果
 	c.JSON(200, gin.H{
 		"code": 200,
@@ -96,11 +104,12 @@ func Login(c *gin.Context) {
 	})
 }
 
+func Info(c *gin.Context) {
+	user, _ := c.Get("user")
+	c.JSON(http.StatusOK, gin.H{"code": 200, "data": gin.H{"user": user}})
+}
 func isTelephoneExits(db *gorm.DB, telephone string) bool {
 	var user model.User
 	db.Where("telephone = ?", telephone).First(&user)
-	if (user.ID) != 0 {
-		return true
-	}
-	return false
+	return (user.ID) != 0
 }
