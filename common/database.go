@@ -4,16 +4,20 @@ import (
 	"fmt"
 	"ginvue/model"
 
+	_ "github.com/go-sql-driver/mysql"
 	"github.com/jinzhu/gorm"
+	"github.com/spf13/viper"
 )
 
 var DB *gorm.DB
 
 func InitDB() *gorm.DB {
-	driverName := "mysql"
+	driverName := viper.GetString("datasource.driverName")
+	fmt.Println(viper.GetString("datasource.driverName"))
+	// driverName := "mysql"
 	host := "localhost"
 	port := "23306"
-	database := "ginvues"
+	database := "ginvue"
 	username := "root"
 	password := "sup157"
 	charset := "utf8mb4"
