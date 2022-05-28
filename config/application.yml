@@ -1,12 +1,12 @@
 server:
-  port:8025
+  port: 8025
 datasource:
-  driverName:mysql
-  host:127.0.0.1
-  port:23306
-  database:ginvue
-  username:root
-  password:sup157
-  charset:utf8mb4
+  driverName: mysql
+  host: 127.0.0.1
+  port: 23306
+  database: ginvue
+  username: root
+  password: sup157
+  charset: utf8mb4
 
 
