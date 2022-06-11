@@ -8,5 +8,6 @@ datasource:
   username: root
   password: sup157
   charset: utf8mb4
+  loc: Asia/Shanghai
 
 
