@@ -37,6 +37,7 @@ func AuthMiddleware() gin.HandlerFunc {
 			ctx.Abort()
 			return
 		}
+		//讲用户信息写入上下文中
 		ctx.Set("user", user)
 		ctx.Next()
 	}
